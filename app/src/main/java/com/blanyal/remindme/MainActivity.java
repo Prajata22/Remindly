@@ -19,10 +19,10 @@ package com.blanyal.remindme;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -115,16 +115,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Multi select items in recycler view
-    private android.support.v7.view.ActionMode.Callback mDeleteMode = new ModalMultiSelectorCallback(mMultiSelector) {
+    private androidx.appcompat.view.ActionMode.Callback mDeleteMode = new ModalMultiSelectorCallback(mMultiSelector) {
 
         @Override
-        public boolean onCreateActionMode(android.support.v7.view.ActionMode actionMode, Menu menu) {
+        public boolean onCreateActionMode(androidx.appcompat.view.ActionMode actionMode, Menu menu) {
             getMenuInflater().inflate(R.menu.menu_add_reminder, menu);
             return true;
         }
 
         @Override
-        public boolean onActionItemClicked(android.support.v7.view.ActionMode actionMode, MenuItem menuItem) {
+        public boolean onActionItemClicked(androidx.appcompat.view.ActionMode actionMode, MenuItem menuItem) {
             switch (menuItem.getItemId()) {
 
                 // On clicking discard reminders
