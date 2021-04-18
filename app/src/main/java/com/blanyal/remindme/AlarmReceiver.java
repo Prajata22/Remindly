@@ -17,10 +17,10 @@
 
 package com.blanyal.remindme;
 
-
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -29,12 +29,9 @@ import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.os.SystemClock;
 import androidx.core.app.NotificationCompat;
-import androidx.legacy.content.WakefulBroadcastReceiver;
-
 import java.util.Calendar;
 
-
-public class AlarmReceiver extends WakefulBroadcastReceiver {
+public class AlarmReceiver extends BroadcastReceiver {
 
     AlarmManager mAlarmManager;
     PendingIntent mPendingIntent;
