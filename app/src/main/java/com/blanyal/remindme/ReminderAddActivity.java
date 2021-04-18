@@ -17,6 +17,7 @@
 
 package com.blanyal.remindme;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -389,6 +390,7 @@ public class ReminderAddActivity extends AppCompatActivity implements
     }
 
     // On clicking menu buttons
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
