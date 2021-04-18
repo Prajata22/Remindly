@@ -17,7 +17,10 @@
 
 package com.blanyal.remindme;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,6 +51,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -106,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize alarm
         mAlarmReceiver = new AlarmReceiver();
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            NotificationChannel channel=new NotificationChannel("MyNotifications","MyNotifications", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager=getSystemService(NotificationManager.class);
+            Objects.requireNonNull(manager).createNotificationChannel(channel);
+        }
     }
 
     // Create context menu for long press actions
@@ -199,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         mAdapter.setItemCount(getDefaultItemCount());
     }
 
