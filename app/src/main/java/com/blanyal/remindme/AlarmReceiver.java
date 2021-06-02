@@ -28,8 +28,14 @@ import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.os.SystemClock;
+import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -49,6 +55,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent editIntent = new Intent(context, ReminderEditActivity.class);
         editIntent.putExtra(ReminderEditActivity.EXTRA_REMINDER_ID, Integer.toString(mReceivedID));
         PendingIntent mClick = PendingIntent.getActivity(context, mReceivedID, editIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Log.i("BAM2", "2");
 
         // Create Notification
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "MyNotifications")
@@ -77,12 +84,14 @@ public class AlarmReceiver extends BroadcastReceiver {
         // Calculate notification time
         Calendar c = Calendar.getInstance();
         long currentTime = c.getTimeInMillis();
-        long diffTime = calendar.getTimeInMillis() - currentTime;
+        long diffTime = 1622490960000L - currentTime;
 
         // Start alarm using notification time
         mAlarmManager.set(AlarmManager.ELAPSED_REALTIME,
                 SystemClock.elapsedRealtime() + diffTime,
                 mPendingIntent);
+        Log.i("BAM1", calendar.getTimeInMillis() + " _ " + getDateFromEpochTime(currentTime) + " _ " + getDateFromEpochTime(calendar.getTimeInMillis())
+        + " _ " + getDateFromEpochTime(diffTime) + " _ " + getDateFromEpochTime(SystemClock.elapsedRealtime() + diffTime));
 
         // Restart alarm if device is rebooted
         ComponentName receiver = new ComponentName(context, BootReceiver.class);
@@ -131,5 +140,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP);
+    }
+
+    public String getDateFromEpochTime(long time) {
+        return new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault()).format(new Date(time));
     }
 }
