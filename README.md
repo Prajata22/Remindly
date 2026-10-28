@@ -1,3 +1,5 @@
+> **Note:** This repository is based on [blanyal/Remindly](https://github.com/blanyal/Remindly) by its original authors and is kept here for reference. Credit and licence belong to the original project; use the original for the current version.
+
 # Remindly
 Android reminder app
 
